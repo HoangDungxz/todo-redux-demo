@@ -3,11 +3,16 @@ import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import status from '../../constants/status';
 import { getList, saveTodo, setTodo } from '../../redux/actions/todoActions';
 import Item from './Item';
+import ReactLoading from 'react-loading';
 
 function List() {
 	const todos = useSelector((state) => {
 		return state.todo.todos;
 	}, shallowEqual);
+
+	const loading = useSelector((state) => {
+		return state.todo.loading;
+	});
 
 	const todo = useSelector((state) => {
 		return state.todo.todo;
@@ -65,21 +70,35 @@ function List() {
 		);
 		handleCloseContextMenu();
 	};
+	console.log(loading);
 
 	return (
 		<>
-			<ul>
-				{todos.length > 0 &&
-					todos.map((todo, key) => {
-						return (
-							<Item
-								key={key}
-								todo={todo}
-								handleOpenContextMenu={handleOpenContextMenu}
-							/>
-						);
-					})}
-			</ul>
+			{loading == true ? (
+				<div className='loading'>
+					<ReactLoading
+						type={'cylon'}
+						color={'red'}
+						height={'20%'}
+						width={'20%'}
+					/>
+				</div>
+			) : (
+				<ul>
+					{todos.length > 0 &&
+						todos.map((todo, key) => {
+							return (
+								<Item
+									key={key}
+									todo={todo}
+									handleOpenContextMenu={
+										handleOpenContextMenu
+									}
+								/>
+							);
+						})}
+				</ul>
+			)}
 
 			<div
 				className={`status-context-cover ${contextMenu.visibility}`}

@@ -5,6 +5,7 @@ export const getList = (dispatch) => {
 	return async () => {
 		dispatch(getListRequest());
 		const payload = await todoApi.GET();
+
 		dispatch(getListSuccess(payload));
 	};
 };

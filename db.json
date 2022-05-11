@@ -1,8 +1,8 @@
 {
   "todos": [
     {
-      "name": "Học React",
-      "status": 0,
+      "name": "Học Reactw",
+      "status": 2,
       "id": 2
     },
     {
@@ -12,8 +12,13 @@
     },
     {
       "name": "DEF",
-      "status": 0,
+      "status": 2,
       "id": 5
+    },
+    {
+      "name": "qưqw",
+      "status": 2,
+      "id": 6
     }
   ]
 }

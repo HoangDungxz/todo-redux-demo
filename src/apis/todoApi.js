@@ -11,6 +11,8 @@ const todoApi = {
 			response = await axios.get(`${baseUrl}/${id}`);
 		}
 
+		await new Promise((resolve) => setTimeout(resolve, 1000));
+
 		return response.data;
 	},
 
