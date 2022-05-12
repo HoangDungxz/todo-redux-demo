@@ -10,7 +10,7 @@ function Item({ todo, handleOpenContextMenu }) {
 	};
 
 	const handleDelete = (todo) => {
-		dispatch(deleteTodo(todo, dispatch));
+		dispatch(deleteTodo(todo));
 	};
 
 	return (

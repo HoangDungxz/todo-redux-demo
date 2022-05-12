@@ -21,7 +21,7 @@ function List() {
 	const dispatch = useDispatch();
 
 	useEffect(() => {
-		dispatch(getList(dispatch));
+		dispatch(getList());
 	}, []);
 
 	const [contextMenu, setContextMenu] = useState({
@@ -70,7 +70,6 @@ function List() {
 		);
 		handleCloseContextMenu();
 	};
-	console.log(loading);
 
 	return (
 		<>

@@ -29,7 +29,7 @@ function Form() {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		dispatch(saveTodo(todo, dispatch));
+		dispatch(saveTodo(todo));
 	};
 
 	return (

@@ -1,8 +1,8 @@
 import todoApi from '../../apis/todoApi';
 import types from '../../constants/types';
 
-export const getList = (dispatch) => {
-	return async () => {
+export const getList = () => {
+	return async (dispatch) => {
 		dispatch(getListRequest());
 		const payload = await todoApi.GET();
 
@@ -29,12 +29,12 @@ export const setTodo = (todo) => {
 	};
 };
 
-export const saveTodo = (todo, dispatch) => {
-	return async () => {
+export const saveTodo = (todo) => {
+	return async (dispatch) => {
 		dispatch(saveTodoRequest());
 		const payload = await todoApi.SAVE(todo);
-		dispatch(saveTodoSuccess(payload, dispatch));
-		dispatch(getList(dispatch));
+		dispatch(saveTodoSuccess(payload));
+		dispatch(getList());
 		dispatch(
 			setTodo({
 				id: undefined,
@@ -50,19 +50,19 @@ const saveTodoRequest = () => {
 		type: types.SAVE_TODO_REQUEST,
 	};
 };
-const saveTodoSuccess = (payload, dispatch) => {
+const saveTodoSuccess = (payload) => {
 	return {
 		type: types.SAVE_TODO_SUCCESS,
-		payload: { payload: payload, dispatch: dispatch },
+		payload: { payload: payload },
 	};
 };
 
-export const deleteTodo = (todo, dispatch) => {
-	return async () => {
+export const deleteTodo = (todo) => {
+	return async (dispatch) => {
 		dispatch(deleteTodoRequest());
 		const payload = await todoApi.DELETE(todo.id);
-		dispatch(deleteTodoSuccess(payload, dispatch));
-		dispatch(getList(dispatch));
+		dispatch(deleteTodoSuccess(payload));
+		dispatch(getList());
 	};
 };
 
@@ -71,9 +71,9 @@ const deleteTodoRequest = () => {
 		type: types.DELETE_TODO_REQUEST,
 	};
 };
-const deleteTodoSuccess = (payload, dispatch) => {
+const deleteTodoSuccess = (payload) => {
 	return {
 		type: types.DELETE_TODO_SUCCESS,
-		payload: { payload: payload, dispatch: dispatch },
+		payload: { payload: payload },
 	};
 };
